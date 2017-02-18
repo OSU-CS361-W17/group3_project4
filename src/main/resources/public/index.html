@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-framework="intercoolerjs">
+<html lang="en" data-framework="intercoolerjs" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title></title>
@@ -16,7 +16,7 @@
     <!--#parse("/velocity/todoList.vm")-->
     <div id="rightheader">
         <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776; Place Ships</span>
-
+        <button type="button" onclick="window.location.href='/'" />New Game</button>
     </div>
 
 
@@ -187,14 +187,7 @@
 </section>
 
 <div id="leftheader">
-    <form>
-        <input type="button" value="New Game"
-               onclick="window.location.href='/'" />
-    </form>
-    <br>
-    <form id="duckandcoverbutton">
-        <input type="button" onclick="openDuckAndCoverNav()" value = "Duck and Cover!!"></input>
-    </form>
+        <button type="button" onclick="openDuckAndCoverNav()" id="duckandcoverbutton">Duck and Cover</button>
 </div>
 
 <div id="middleheader">
@@ -336,9 +329,8 @@
         </td>
 
         <td id="largeMap">
-
             <section id="todoapp" ic-target="this">
-                <div id="TheirBoard" class="gameBoard">
+                <div id="TheirBoard" class="gameBoard" align = center>
                     <table>
                         <tr id="My_Row_1">
                             <td id="1_1"  class="{{1_1}}" onclick="resolveTileClick(this.id)"></td>
@@ -462,7 +454,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class = "orientationUnderneath">
+                <div class = "orientationUnderneath" align = center>
                     <h3 id = "scanfirehdg"> Scan or fire </h3>
                     <label class="switch">
                         <input type="checkbox" name="scanfire" id="scanfire">
@@ -473,6 +465,7 @@
 
 
         <td id="key">
+            <div align = right>
             <h3>Map Key</h3>
             <table>
                 <tr>
@@ -488,9 +481,10 @@
                     <td>Miss</td>
                 </tr>
             </table>
-            <div>
+                <!--<div>
                 <!--<h3>You have made 0 hits</h3><br>
-                <h3>You have made 0 misses</h3>-->
+                    <h3>You have made 0 misses</h3>
+                </div>-->
             </div>
         </td>
     </tr>
