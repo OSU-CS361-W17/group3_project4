@@ -8,6 +8,8 @@ body {
 /*with:300px;
 height:300px;*/
 background-color: light-gray;
+/*border: 2px solid black;
+border-radius: 3px;*/
 }
 
 .gameBoard td {
@@ -79,6 +81,19 @@ background-color: transparent;
 
 .orientationButton {
     background-color: green;
+    border: solid;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.playButton {
+    background-color: red;
     border: solid;
     color: white;
     padding: 15px 32px;
