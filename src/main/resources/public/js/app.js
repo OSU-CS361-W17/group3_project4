@@ -130,6 +130,8 @@ function log(logContents){
 function displayGameState(gameModel){
 $( '#MyBoard td'  ).css("background-color", "#B0C4DE");
 $( '#TheirBoard td'  ).css("background-color", "#B0C4DE");
+$( '#PlaceShipsBoard td'  ).css("background-color", "#B0C4DE");
+
 
 if(gameModel.scanResult && gameModel.scanRequest){
 alert("Scan found at least one Ship")}
@@ -151,9 +153,11 @@ for (var i = 0; i < gameModel.computerHits.length; i++) {
 
 for (var i = 0; i < gameModel.playerMisses.length; i++) {
    $( '#MyBoard #' + gameModel.playerMisses[i].Across + '_' + gameModel.playerMisses[i].Down ).css("background-color", "green");
+   $( '#PlaceShipsBoard #' + gameModel.playerMisses[i].Across + '_' + gameModel.playerMisses[i].Down ).css("background-color", "green");
 }
 for (var i = 0; i < gameModel.playerHits.length; i++) {
    $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
+   $( '#PlaceShipsBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
 }
 
 
@@ -172,10 +176,12 @@ function displayShip(ship){
     if(startCoordAcross == endCoordAcross){
         for (i = startCoordDown; i <= endCoordDown; i++) {
             $( '#MyBoard #'+startCoordAcross+'_'+i  ).css("background-color", "yellow");
+            $( '#PlaceShipsBoard #'+startCoordAcross+'_'+i  ).css("background-color", "yellow")
         }
     } else {
         for (i = startCoordAcross; i <= endCoordAcross; i++) {
             $( '#MyBoard #'+i+'_'+startCoordDown  ).css("background-color", "yellow");
+            $( '#PlaceShipsBoard #'+i+'_'+startCoordDown  ).css("background-color", "yellow");
         }
     }
  }

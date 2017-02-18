@@ -15,7 +15,7 @@
 <section id="todoapp" ic-target="this">
     <!--#parse("/velocity/todoList.vm")-->
     <div id="rightheader">
-        <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776; open</span>
+        <span style="font-size:30px;cursor:pointer;" onclick="openNav()">&#9776; Place Ships</span>
 
     </div>
 
@@ -35,9 +35,9 @@
         <div class="placeShipOverlay-content">
             <h2 align="center">Place Your Ships</h2>
 
-            <!--This container builds the player board in the center of the scrren-->
+            <!--This container builds the player board in the center of the screen-->
             <div class="centerPlayerBoard" align="center">
-                <div  id="MyBoard" class="gameBoard">
+                <div  id="PlaceShipsBoard" class="gameBoard">
                     <table>
                         <tr id="My_Row_1">
                             <td id="1_1"  class="{{1_1}}" onclick="placeShipOnClick(this.id)"></td>
