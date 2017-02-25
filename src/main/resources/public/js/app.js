@@ -107,6 +107,7 @@ function scan(x,y){
 function resolveTileClick(btnId){
     var isFire = document.getElementById("scanfire").checked;
     var numSep = btnId.indexOf("_");
+    //changed here
     var x = btnId.substring(0,numSep);
     var y = btnId.substring(numSep+1);
     if(isFire){
@@ -140,8 +141,8 @@ alert("Scan found no Ships")}
 
 displayShip(gameModel.aircraftCarrier);
 displayShip(gameModel.battleship);
-displayShip(gameModel.cruiser);
-displayShip(gameModel.destroyer);
+displayShip(gameModel.clipper);
+displayShip(gameModel.dinghy);
 displayShip(gameModel.submarine);
 
 for (var i = 0; i < gameModel.computerMisses.length; i++) {
@@ -152,10 +153,12 @@ for (var i = 0; i < gameModel.computerHits.length; i++) {
 }
 
 for (var i = 0; i < gameModel.playerMisses.length; i++) {
+    //changing this
    $( '#MyBoard #' + gameModel.playerMisses[i].Across + '_' + gameModel.playerMisses[i].Down ).css("background-color", "green");
    $( '#PlaceShipsBoard #' + gameModel.playerMisses[i].Across + '_' + gameModel.playerMisses[i].Down ).css("background-color", "green");
 }
 for (var i = 0; i < gameModel.playerHits.length; i++) {
+    //and this
    $( '#MyBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
    $( '#PlaceShipsBoard #' + gameModel.playerHits[i].Across + '_' + gameModel.playerHits[i].Down ).css("background-color", "red");
 }

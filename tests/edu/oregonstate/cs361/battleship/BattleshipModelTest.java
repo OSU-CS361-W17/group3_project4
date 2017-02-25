@@ -14,8 +14,8 @@ class BattleshipModelTest {
         BattleshipModel model = new BattleshipModel();
         assertEquals("AircraftCarrier",model.getShip("AircraftCarrier").getName());
         assertEquals("Battleship",model.getShip("battleship").getName());
-        assertEquals("Cruiser",model.getShip("Cruiser").getName());
-        assertEquals("Destroyer",model.getShip("Destroyer").getName());
+        assertEquals("clipper",model.getShip("clipper").getName());
+        assertEquals("dinghy",model.getShip("dinghy").getName());
         assertEquals("Submarine",model.getShip("Submarine").getName());
         assertNull(model.getShip("SS Minnow"));
     }
@@ -46,22 +46,22 @@ class BattleshipModelTest {
                 testIfCovers(model, "Battleship","1","1","vertical",9,9));
 
         assertEquals(true,
-                testIfCovers(model, "Cruiser","1","1","horizontal",1,1));
+                testIfCovers(model, "clipper","1","1","horizontal",1,1));
         assertEquals(true,
-                testIfCovers(model, "Cruiser","1","1","vertical",1,1));
+                testIfCovers(model, "clipper","1","1","vertical",1,1));
         assertEquals(false,
-                testIfCovers(model, "Cruiser","1","1","horizontal",9,9));
+                testIfCovers(model, "clipper","1","1","horizontal",9,9));
         assertEquals(false,
-                testIfCovers(model, "Cruiser","1","1","vertical",9,9));
+                testIfCovers(model, "clipper","1","1","vertical",9,9));
 
         assertEquals(true,
-                testIfCovers(model, "Destroyer","1","1","horizontal",1,1));
+                testIfCovers(model, "dinghy","1","1","horizontal",1,1));
         assertEquals(true,
-                testIfCovers(model, "Destroyer","1","1","vertical",1,1));
+                testIfCovers(model, "dinghy","1","1","vertical",1,1));
         assertEquals(false,
-                testIfCovers(model, "Destroyer","1","1","horizontal",9,9));
+                testIfCovers(model, "dinghy","1","1","horizontal",9,9));
         assertEquals(false,
-                testIfCovers(model, "Destroyer","1","1","vertical",9,9));
+                testIfCovers(model, "dinghy","1","1","vertical",9,9));
 
         assertEquals(true,
                 testIfCovers(model, "Submarine","1","1","horizontal",1,1));
@@ -110,8 +110,8 @@ class BattleshipModelTest {
         BattleshipModel model = new BattleshipModel();
         model.placeShip("Aircraftcarrier","1","5","horizontal");
         model.placeShip("Battleship","2","4","horizontal");
-        model.placeShip("Cruiser","3","3","horizontal");
-        model.placeShip("Destroyer","4","2","horizontal");
+        model.placeShip("clipper","3","3","horizontal");
+        model.placeShip("dinghy","4","2","horizontal");
         model.placeShip("Submarine","5","1","horizontal");
 
         model.playerShot(new Coordinate(9,9));

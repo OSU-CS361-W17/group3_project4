@@ -4,10 +4,19 @@ package edu.oregonstate.cs361.battleship;
  * Created by michaelhilton on 1/5/17.
  */
 public class Ship {
-    private String name;
-    private int length;
-    private Coordinate start;
-    private Coordinate end;
+    public String name;
+    public int length;
+    public Coordinate start;
+    public Coordinate end;
+    public boolean stealth = false;
+    public boolean ezTarget = false;
+
+    public Ship(){
+        name = "unnamed";
+        length = 0;
+        start = new Coordinate(0,0);
+        end = new Coordinate(0,0);
+    }
 
     public Ship(String n, int l,Coordinate s, Coordinate e) {
         name = n;
@@ -54,20 +63,22 @@ public class Ship {
 
 
     public boolean scan(Coordinate coor) {
-        if(covers(coor)){
-            return true;
-        }
-        if(covers(new Coordinate(coor.getAcross()-1,coor.getDown()))){
-            return true;
-        }
-        if(covers(new Coordinate(coor.getAcross()+1,coor.getDown()))){
-            return true;
-        }
-        if(covers(new Coordinate(coor.getAcross(),coor.getDown()-1))){
-            return true;
-        }
-        if(covers(new Coordinate(coor.getAcross(),coor.getDown()+1))){
-            return true;
+        if(!this.stealth) {
+            if (covers(coor)) {
+                return true;
+            }
+            if (covers(new Coordinate(coor.getAcross() - 1, coor.getDown()))) {
+                return true;
+            }
+            if (covers(new Coordinate(coor.getAcross() + 1, coor.getDown()))) {
+                return true;
+            }
+            if (covers(new Coordinate(coor.getAcross(), coor.getDown() - 1))) {
+                return true;
+            }
+            if (covers(new Coordinate(coor.getAcross(), coor.getDown() + 1))) {
+                return true;
+            }
         }
         return false;
     }
