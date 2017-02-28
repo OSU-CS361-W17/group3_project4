@@ -12,13 +12,13 @@ public class BattleshipModel {
     private MilShip aircraftCarrier = new MilShip("AircraftCarrier",5, new Coordinate(0,0),new Coordinate(0,0),false);
     private MilShip battleship = new MilShip("Battleship",4, new Coordinate(0,0),new Coordinate(0,0),true);
     private CivShip clipper = new CivShip("clipper",3, new Coordinate(0,0),new Coordinate(0,0));
-    private CivShip dinghy = new CivShip("dinghy",0, new Coordinate(0,0),new Coordinate(0,0));
+    private CivShip dinghy = new CivShip("dinghy",1, new Coordinate(0,0),new Coordinate(0,0));
     private MilShip submarine = new MilShip("Submarine",2, new Coordinate(0,0),new Coordinate(0,0), true);
 
     private MilShip computer_aircraftCarrier = new MilShip("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7), false);
     private MilShip computer_battleship = new MilShip("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8), true);
-    private CivShip computer_clipper = new CivShip("Computer_clipper",3, new Coordinate(4,1),new Coordinate(4,4));
-    private CivShip computer_dinghy = new CivShip("Computer_dinghy",0, new Coordinate(7,3),new Coordinate(7,3));
+    private CivShip computer_clipper = new CivShip("Computer_clipper",3, new Coordinate(4,1),new Coordinate(4,3));
+    private CivShip computer_dinghy = new CivShip("Computer_dinghy",1, new Coordinate(7,3),new Coordinate(7,3));
     private MilShip computer_submarine = new MilShip("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8),true);
 
     ArrayList<Coordinate> playerHits;
@@ -63,7 +63,7 @@ public class BattleshipModel {
             } if(shipName.equalsIgnoreCase("battleship")) {
                 this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+4));
             } if(shipName.equalsIgnoreCase("clipper")) {
-                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+3));
+                this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+2));
             } if(shipName.equalsIgnoreCase("dinghy")) {
                 this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
             }if(shipName.equalsIgnoreCase("submarine")) {
@@ -76,7 +76,7 @@ public class BattleshipModel {
                 } if(shipName.equalsIgnoreCase("battleship")) {
                     this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+4,colInt));
                 } if(shipName.equalsIgnoreCase("clipper")) {
-                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+3,colInt));
+                    this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint+2,colInt));
                 } if(shipName.equalsIgnoreCase("dinghy")) {
                     this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt));
                 }if(shipName.equalsIgnoreCase("submarine")) {
@@ -94,7 +94,7 @@ public class BattleshipModel {
         }else if (computer_battleship.covers(coor)){
             computerHits.add(coor);
         }else if (computer_clipper.covers(coor)){
-            computerHits.add(coor);
+            sinkComputerCivShip(computer_clipper);
         }else if (computer_dinghy.covers(coor)){
             computerHits.add(coor);
         }else if (computer_submarine.covers(coor)){
@@ -126,7 +126,7 @@ public class BattleshipModel {
         }else if (battleship.covers(coor)){
             playerHits.add(coor);
         }else if (clipper.covers(coor)){
-            playerHits.add(coor);
+            sinkPlayerCivShip(clipper);
         }else if (dinghy.covers(coor)){
             playerHits.add(coor);
         }else if (submarine.covers(coor)){
@@ -155,6 +155,44 @@ public class BattleshipModel {
             scanResult = false;
         }
         scanRequest = true;
+    }
+
+
+
+    public void sinkComputerCivShip (CivShip ship) {
+        int across = ship.start.getAcross();
+        int down = ship.start.getDown();
+        if (ship.start.getAcross() != ship.end.getAcross()) {
+            for (int i =0; i < ship.length; i++) {
+                Coordinate hitCoor = new Coordinate(across + i, down);
+                computerHits.add(hitCoor);
+            }
+        }
+        else {
+            for (int i = 0; i < ship.length; i++) {
+                Coordinate hitCoor = new Coordinate(across , down + i);
+                computerHits.add(hitCoor);
+            }
+        }
+    }
+
+
+
+    public void sinkPlayerCivShip (CivShip ship) {
+        int across = ship.start.getAcross();
+        int down = ship.start.getDown();
+        if (ship.start.getAcross() != ship.end.getAcross()) {
+            for (int i =0; i < ship.length; i++) {
+                Coordinate hitCoor = new Coordinate(across + i, down);
+                playerHits.add(hitCoor);
+            }
+        }
+        else {
+            for (int i = 0; i < ship.length; i++) {
+                Coordinate hitCoor = new Coordinate(across , down + i);
+                playerHits.add(hitCoor);
+            }
+        }
     }
 
     public boolean getScanResult() {
