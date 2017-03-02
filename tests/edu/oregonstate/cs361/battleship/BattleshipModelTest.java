@@ -172,6 +172,33 @@ class BattleshipModelTest {
     }
 
 
+    @Test
+    void testSinkComputerCivShip () {
+        BattleshipModel model = new BattleshipModel();
+        model.shootAtComputer(4, 1);
+        assertEquals(4, model.computerHits.get(0).getAcross());
+        assertEquals(1, model.computerHits.get(0).getDown());
+        assertEquals(4, model.computerHits.get(1).getAcross());
+        assertEquals(2, model.computerHits.get(1).getDown());
+        assertEquals(4, model.computerHits.get(2).getAcross());
+        assertEquals(3, model.computerHits.get(2).getDown());
+    }
+
+    @Test
+    void testSinkPlayerCivShip () {
+        BattleshipModel model = new BattleshipModel();
+        model.getShip("clipper").setLocation((new Coordinate(1,1)),new Coordinate(3,1));
+        Coordinate coor = new Coordinate(1,1);
+        model.playerShot(coor);
+        assertEquals(1, model.playerHits.get(0).getAcross());
+        assertEquals(1, model.playerHits.get(0).getDown());
+        assertEquals(2, model.playerHits.get(1).getAcross());
+        assertEquals(1, model.playerHits.get(1).getDown());
+        assertEquals(3, model.playerHits.get(2).getAcross());
+        assertEquals(1, model.playerHits.get(2).getDown());
+    }
+
+
 
 
 
