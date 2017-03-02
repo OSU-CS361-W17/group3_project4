@@ -91,17 +91,18 @@ class BattleshipModelTest {
         assertEquals(6, model.computerHits.get(1).getAcross());
         assertEquals(8, model.computerHits.get(1).getDown());
 
-        model.shootAtComputer(4,4) ;
-        assertEquals(4, model.computerHits.get(2).getAcross());
-        assertEquals(4, model.computerHits.get(2).getDown());
-
         model.shootAtComputer(7,3) ;
-        assertEquals(7, model.computerHits.get(3).getAcross());
-        assertEquals(3, model.computerHits.get(3).getDown());
+        assertEquals(7, model.computerHits.get(2).getAcross());
+        assertEquals(3, model.computerHits.get(2).getDown());
 
         model.shootAtComputer(9,6) ;
-        assertEquals(9, model.computerHits.get(4).getAcross());
-        assertEquals(6, model.computerHits.get(4).getDown());
+        assertEquals(9, model.computerHits.get(3).getAcross());
+        assertEquals(6, model.computerHits.get(3).getDown());
+
+        model.shootAtComputer(4,1) ;
+        assertEquals(4, model.computerHits.get(4).getAcross());
+        assertEquals(1, model.computerHits.get(4).getDown());
+
     }
 
 
@@ -125,17 +126,17 @@ class BattleshipModelTest {
         assertEquals(2, model.playerHits.get(1).getAcross());
         assertEquals(4, model.playerHits.get(1).getDown());
 
-        model.playerShot(new Coordinate(3,3));
-        assertEquals(3, model.playerHits.get(2).getAcross());
-        assertEquals(3, model.playerHits.get(2).getDown());
-
         model.playerShot(new Coordinate(4,2));
-        assertEquals(4, model.playerHits.get(3).getAcross());
-        assertEquals(2, model.playerHits.get(3).getDown());
+        assertEquals(4, model.playerHits.get(2).getAcross());
+        assertEquals(2, model.playerHits.get(2).getDown());
 
         model.playerShot(new Coordinate(5,1));
-        assertEquals(5, model.playerHits.get(4).getAcross());
-        assertEquals(1, model.playerHits.get(4).getDown());
+        assertEquals(5, model.playerHits.get(3).getAcross());
+        assertEquals(1, model.playerHits.get(3).getDown());
+
+        model.playerShot(new Coordinate(3,3));
+        assertEquals(3, model.playerHits.get(4).getAcross());
+        assertEquals(3, model.playerHits.get(4).getDown());
     }
 
     @Test
