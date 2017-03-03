@@ -169,8 +169,8 @@
                 <select name="shipSelec" id="shipSelec" size="6" class="selectionBoxDesign">
                     <option value="aircraftCarrier" class="shipSelectButton" selected>Aircraft Carrier</option>
                     <option value="battleship" class="shipSelectButton">Battleship</option>
-                    <option value="clipper" class="shipSelectButton">clipper</option>
-                    <option value="dinghy" class="shipSelectButton">dinghy</option>
+                    <option value="clipper" class="shipSelectButton">Clipper</option>
+                    <option value="dinghy" class="shipSelectButton">Dinghy</option>
                     <option value="submarine" class="shipSelectButton">Submarine</option>
                 </select>
             </div>
@@ -454,11 +454,12 @@
                     </table>
                 </div>
                 <div class = "orientationUnderneath" align = center>
-                    <h3 id = "scanfirehdg"> Scan or fire </h3>
                     <label class="switch">
                         <input type="checkbox" name="scanfire" id="scanfire">
                         <div class="slider"></div>
                     </label>
+                    <h3>To scan the map for another ship, click the colored box above so that it turns to the color yellow</h3>
+                    <h3>To fire at the map, click the colored box above so that it turns to the color red</h3>
                 </div>
         </td>
 
@@ -478,6 +479,10 @@
                 <tr>
                     <td id="waterMiss"></td>
                     <td>Miss</td>
+                </tr>
+                <tr>
+                    <td id="shipPlacement"></td>
+                    <td>Your Ship</td>
                 </tr>
             </table>
                 <!--<div>
