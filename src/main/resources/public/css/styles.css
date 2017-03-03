@@ -267,8 +267,8 @@ button {
     height:10px;
 }
 
-#waterShip {
-    background: #D3D3D3;
+#shipPlacement {
+    background: yellow;
     width:20px;
     height:10px;
 }
