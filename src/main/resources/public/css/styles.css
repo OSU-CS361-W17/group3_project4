@@ -209,7 +209,7 @@ background-color: transparent;
     vertical-align: top;
 }
 
-.shipIconBox {
+.shipIconBoxReg {
     display: block;
     vertical-align: top;
     width: 30px;
@@ -220,7 +220,7 @@ background-color: transparent;
     position: relative;
 }
 
-.shipIconBox2 {
+.shipIconBoxDim {
     opacity: 0.1;
     display: block;
     vertical-align: top;
@@ -232,7 +232,7 @@ background-color: transparent;
     position: relative;
 }
 
-.shipIconBox3 {
+.shipIconBoxInline {
     display: inline;
     vertical-align: top;
     width: 30px;
@@ -243,7 +243,7 @@ background-color: transparent;
     position: relative;
 }
 
-.shipIconBox img {
+.shipIconBoxReg img {
     border-radius: 50%;
     width: 100%;
     height: 100%;
