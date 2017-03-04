@@ -12,6 +12,8 @@
 <!--Body opens placeShipOverlay upon page loading-->
 <body onload="openNav()">
 
+
+
 <section id="todoapp" ic-target="this">
     <!--#parse("/velocity/todoList.vm")-->
     <div id="rightheader">
@@ -34,7 +36,26 @@
 
         <!--This container positions all the items in the placeShipsOverlay-->
         <div class="placeShipOverlay-content">
+
             <h2 align="center">Place Your Ships</h2>
+            <div class="infoBox" style="border: 3px dashed gray; width:300px; position: absolute; left:100px;">
+                <font color="white">
+                    <img class="shipIconBoxInline" src="http://www.clker.com/cliparts/b/a/P/3/L/8/earth-cartoon-hi.png"/>
+                    <br>
+                    Civilian: Hitting this ship once will destroy it.
+                    <br>
+                    <img class="shipIconBoxInline" src="http://ian.umces.edu/imagelibrary/albums/userpics/12789/normal_ian-symbol-defense-force-lands.png"/>
+                    <br>
+                    Military: This ship can survive multiple hits.
+                    <br>
+                    <img class="shipIconBoxInline" src="https://image.freepik.com/free-icon/blind-eye-sign_318-48678.png"/>
+                    <br>
+                    Stealth: This ship cannot be detected in scans.
+                    <div style="opacity: 0;">
+                        hiding buffer text ;)
+                    </div>
+                </font>
+            </div>
 
             <!--This container builds the player board in the center of the screen-->
             <div class="centerPlayerBoard" align="center">
@@ -194,24 +215,7 @@
                     <img class="shipIconBoxDim" src="https://image.freepik.com/free-icon/blind-eye-sign_318-48678.png"/>
                     <img class="shipIconBoxReg" src="https://image.freepik.com/free-icon/blind-eye-sign_318-48678.png"/>
                 </div>
-                <div class="infoBox" style="border: 3px dashed gray;">
-                    <font color="white">
-                    <img class="shipIconBoxInline" src="http://www.clker.com/cliparts/b/a/P/3/L/8/earth-cartoon-hi.png"/>
-                    <br>
-                    Civilian: Hitting this ship once will destroy it.
-                    <br>
-                    <img class="shipIconBoxInline" src="http://ian.umces.edu/imagelibrary/albums/userpics/12789/normal_ian-symbol-defense-force-lands.png"/>
-                    <br>
-                    Military: This ship can survive multiple hits.
-                    <br>
-                    <img class="shipIconBoxInline" src="https://image.freepik.com/free-icon/blind-eye-sign_318-48678.png"/>
-                    <br>
-                    Stealth: This ship cannot be detected in scans.
-                    <div style="opacity: 0;">
-                        hiding buffer text ;)
-                    </div>
-                    </font>
-                </div>
+
             </div>
 
             <!--This container builds the orientation selection buttons underneath the player board-->
