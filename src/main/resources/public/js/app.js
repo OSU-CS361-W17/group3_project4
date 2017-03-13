@@ -12,8 +12,21 @@ $( document ).ready(function() {
             function openNav() {
                 document.getElementById("myNav").style.height = "100%";
             }
-            function closeNav() {
+            function closePlaceShipsOverlay() {
+                //Checks if all the player ships have been placed before closing the overlay
+                if (checkAllShipsPlaced() == true) {
+                var isHardDifficulty = document.getElementById("hardDifficulty").checked;
+                //Checks the selected difficulty, if hard is chosen on the slider then the difficulty is set to hard in the model
+                //The default difficulty is Easy
+                if ( isHardDifficulty) {
+                    gameModel.hardAI = 1;
+                }
                 document.getElementById("myNav").style.height = "0%";
+                }
+                //If all ships havent been placed pop up with a notification
+                else {
+                    //still need to implement notification for failure
+                }
             }
 
             function openDuckAndCoverNav() {
@@ -49,6 +62,16 @@ function placeShip(x,y) {
    });
 }
 
+
+//Function to check if all the player ships have been placed
+function checkAllShipsPlaced() {
+    if (gameModel.aircraftCarrier.isPlaced == true && gameModel.battleship.isPlaced == true  && gameModel.clipper.isPlaced == true  && gameModel.dinghy.isPlaced == true  && gameModel.submarine.isPlaced == true){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 
 
 
