@@ -185,7 +185,7 @@
                 </div>
             </div>
 
-            <!--This container builds the ship selection buttons on the side of the player board-->
+            <!--This container builds the ship selection buttons on the right side of the player board-->
             <div class="shipSelectionOnSide">
                 <select name="shipSelec" id="shipSelec" size="6" class="selectionBoxDesign">
                     <option value="aircraftCarrier" class="shipSelectButton" selected>Aircraft Carrier</option>
@@ -223,9 +223,31 @@
                 <select name="orientationSelec" id="orientationSelec" size="3" class="selectionBoxDesign">
                     <option value="horizontal" class="orientationButton" selected>horizontal</option>
                     <option value="vertical" class="orientationButton">vertical</option>
-                    <option value="PLAY" class="playButton" onclick="closeNav()">PLAY</option>
+                    <option value="PLAY" class="playButton" onclick="closePlaceShipsOverlay()">PLAY</option>
                 </select>
             </div>
+
+            <!--This container builds the difficulty selection slider in the bottom left corener of overlay-->
+            <div style=" position: absolute; left:20px; top:400px;">
+                <h2 align="center">Difficulty</h2>
+                <div class="centerPlayerBoard">
+                    <h2>EASY   </h2>
+                </div>
+                <div class="centerPlayerBoard">
+                <label class="difficultySwitch">
+                    <input type="checkbox" name="hardDifficulty" id="hardDifficulty">
+                    <div class="difficultySlider"></div>
+                </label>
+                </div>
+                <div class="centerPlayerBoard">
+                    <h2>HARD</h2>
+                </div>
+                <font color="white">
+                    <br>Easy Mode: Computer will fire in a set pattern<br>
+                    <br>Hard Mode: Computer will actively try to sink a player ship that has been hit<br>
+                </font>
+            </div>
+
         </div>
     </div>
 </section>

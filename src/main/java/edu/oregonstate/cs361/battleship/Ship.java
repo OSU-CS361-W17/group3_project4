@@ -10,6 +10,7 @@ public class Ship {
     public Coordinate end;
     public boolean stealth = false;
     public boolean ezTarget = false;
+    public boolean isPlaced = false;
 
     public Ship(){
         name = "unnamed";
@@ -82,4 +83,7 @@ public class Ship {
         }
         return false;
     }
+
+    public void setShipPlaced() {isPlaced = true;}
+
 }
