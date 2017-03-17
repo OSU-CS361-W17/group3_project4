@@ -20,6 +20,7 @@ $( document ).ready(function() {
                 //The default difficulty is Easy
                 if ( isHardDifficulty) {
                     gameModel.hardAI = 1;
+                    changeComputerShipPlacement();
                 }
                 document.getElementById("myNav").style.height = "0%";
                 }
@@ -38,8 +39,6 @@ $( document ).ready(function() {
 
 function placeShip(x,y) {
    console.log($( "#shipSelec" ).val());
-//   console.log($( "#rowSelec" ).val());
-//   console.log($( "#colSelec" ).val());
    console.log($( "#orientationSelec" ).val());
 
    //var menuId = $( "ul.nav" ).first().attr( "id" );
@@ -76,11 +75,6 @@ function checkAllShipsPlaced() {
 
 
 function fire(x, y){
- //console.log($( "#colFire" ).val());
-   //console.log($( "#rowFire" ).val());
-
-//var menuId = $( "ul.nav" ).first().attr( "id" );
-
    var request = $.ajax({
      url: "/fire/" + x + "/" + y,
      method: "post",
@@ -102,9 +96,6 @@ function fire(x, y){
 }
 
 function scan(x,y){
- //console.log($( "#colScan" ).val());
-   //console.log($( "#rowScan" ).val());
-//var menuId = $( "ul.nav" ).first().attr( "id" );
    var request = $.ajax({
      url: "/scan/" + x + "/" + y,
      method: "post",
@@ -197,7 +188,6 @@ function displayShip(ship){
  startCoordDown = ship.start.Down;
  endCoordAcross = ship.end.Across;
  endCoordDown = ship.end.Down;
-// console.log(startCoordAcross);
  if(startCoordAcross > 0){
     if(startCoordAcross == endCoordAcross){
         for (i = startCoordDown; i <= endCoordDown; i++) {
@@ -211,7 +201,10 @@ function displayShip(ship){
         }
     }
  }
+}
 
-
-
+function changeComputerShipPlacement() {
+    //var randomNumber = Math.floor((Math.random() * 10) + 1);
+    gameModel.computer_aircraftCarrier.Coordinate.setAcross(1);
+    //gameModel.computer_aircraftCarrier.startCoordDown = 1;
 }
