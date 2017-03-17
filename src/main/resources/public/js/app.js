@@ -204,7 +204,91 @@ function displayShip(ship){
 }
 
 function changeComputerShipPlacement() {
-    //var randomNumber = Math.floor((Math.random() * 10) + 1);
-    gameModel.computer_aircraftCarrier.Coordinate.setAcross(1);
-    //gameModel.computer_aircraftCarrier.startCoordDown = 1;
+    var masterRandomNumber = Math.floor((Math.random() * 2) + 1);
+    if (masterRandomNumber == 1) {
+        var randomNumber1 = Math.floor((Math.random() * 10) + 1);
+        gameModel.computer_aircraftCarrier.start.Across = randomNumber1;
+        gameModel.computer_aircraftCarrier.start.Down = 1;
+        gameModel.computer_aircraftCarrier.end.Across = randomNumber1;
+        gameModel.computer_aircraftCarrier.end.Down = 6;
+
+        randomNumber2 = randomNumber1;
+        while (randomNumber1 == randomNumber2) {
+            var randomNumber2 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_battleship.start.Across = randomNumber2;
+        gameModel.computer_battleship.start.Down = 3;
+        gameModel.computer_battleship.end.Across = randomNumber2;
+        gameModel.computer_battleship.end.Down = 7;
+
+        randomNumber3 = randomNumber1;
+        while ((randomNumber3 == randomNumber1) || (randomNumber3 == randomNumber2)) {
+            var randomNumber3 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_clipper.start.Across = randomNumber3;
+        gameModel.computer_clipper.start.Down = 8;
+        gameModel.computer_clipper.end.Across = randomNumber3;
+        gameModel.computer_clipper.end.Down = 10;
+
+        randomNumber4 = randomNumber1;
+        while ((randomNumber4 == randomNumber1) || (randomNumber4 == randomNumber2)) {
+            var randomNumber4 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_submarine.start.Across = randomNumber4;
+        gameModel.computer_submarine.start.Down = 3;
+        gameModel.computer_submarine.end.Across = randomNumber4;
+        gameModel.computer_submarine.end.Down = 5;
+
+        randomNumber5 = randomNumber1;
+        while ((randomNumber5 == randomNumber1) || (randomNumber5 == randomNumber2)) {
+            var randomNumber5 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_dinghy.start.Across = randomNumber5;
+        gameModel.computer_dinghy.start.Down = masterRandomNumber;
+        gameModel.computer_dinghy.end.Across = randomNumber5;
+        gameModel.computer_dinghy.end.Down = masterRandomNumber;
+    }
+    else {
+        var randomNumber1 = Math.floor((Math.random() * 10) + 1);
+        gameModel.computer_aircraftCarrier.start.Down = randomNumber1;
+        gameModel.computer_aircraftCarrier.start.Across = 1;
+        gameModel.computer_aircraftCarrier.end.Down = randomNumber1;
+        gameModel.computer_aircraftCarrier.end.Across = 6;
+
+        randomNumber2 = randomNumber1;
+        while (randomNumber1 == randomNumber2) {
+            var randomNumber2 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_battleship.start.Down = randomNumber2;
+        gameModel.computer_battleship.start.Across = 3;
+        gameModel.computer_battleship.end.Down = randomNumber2;
+        gameModel.computer_battleship.end.Across = 7;
+
+        randomNumber3 = randomNumber1;
+        while ((randomNumber3 == randomNumber1) || (randomNumber3 == randomNumber2)) {
+            var randomNumber3 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_clipper.start.Down = randomNumber3;
+        gameModel.computer_clipper.start.Across = 8;
+        gameModel.computer_clipper.end.Down = randomNumber3;
+        gameModel.computer_clipper.end.Across = 10;
+
+        randomNumber4 = randomNumber1;
+        while ((randomNumber4 == randomNumber1) || (randomNumber4 == randomNumber2)) {
+            var randomNumber4 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_submarine.start.Down = randomNumber4;
+        gameModel.computer_submarine.start.Across = 3;
+        gameModel.computer_submarine.end.Down = randomNumber4;
+        gameModel.computer_submarine.end.Across = 5;
+
+        randomNumber5 = randomNumber1;
+        while ((randomNumber5 == randomNumber1) || (randomNumber5 == randomNumber2)) {
+            var randomNumber5 = Math.floor((Math.random() * 10) + 1);
+        }
+        gameModel.computer_dinghy.start.Down = randomNumber5;
+        gameModel.computer_dinghy.start.Across = masterRandomNumber;
+        gameModel.computer_dinghy.end.Down = randomNumber5;
+        gameModel.computer_dinghy.end.Across = masterRandomNumber;
+    }
 }
