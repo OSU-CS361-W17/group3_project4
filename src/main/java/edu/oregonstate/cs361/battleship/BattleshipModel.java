@@ -28,7 +28,7 @@ public class BattleshipModel {
 
     boolean scanResult = false;
     boolean scanRequest = false;
-    int hardAI = 1;
+    int hardAI = 0;
 
 
     public BattleshipModel() {
@@ -58,6 +58,7 @@ public class BattleshipModel {
     public BattleshipModel placeShip(String shipName, String row, String col, String orientation) {
         int rowint = Integer.parseInt(row);
         int colInt = Integer.parseInt(col);
+        this.getShip(shipName).setShipPlaced();
         if(orientation.equals("horizontal")){
             if (shipName.equalsIgnoreCase("aircraftcarrier")) {
                 this.getShip(shipName).setLocation(new Coordinate(rowint,colInt),new Coordinate(rowint,colInt+5));
@@ -116,12 +117,16 @@ public class BattleshipModel {
     public void ezShot(){//still needs code to stop from shooting same tile twice. Consider using code in else statement in hardShot()
         int max = 10;
         int min = 1;
-        Random random = new Random();
-        int randRow = random.nextInt(max - min + 1) + min;
-        int randCol = random.nextInt(max - min + 1) + min;
+        Coordinate coor = new Coordinate(0, 0);
+        do {
+            Random random = new Random();
+            int randRow = random.nextInt(max - min + 1) + min;
+            int randCol = random.nextInt(max - min + 1) + min;
+            coor = new Coordinate(randRow, randCol);
+        }while(!goodShot(coor));
 
-        Coordinate coor = new Coordinate(randRow,randCol);
         playerShot(coor);
+        return;
     }
     //loops through all known hits and wraps them in shots such that all hits will be surrounded by hits or misses. Randomizes if all hits are wrapped.
     public void hardShot(){
@@ -188,7 +193,7 @@ public class BattleshipModel {
     }
 
     void playerShot(Coordinate coor) {
-        if(playerMisses.contains(coor)){
+        if(playerMisses.contains(coor) || playerHits.contains(coor)){
             System.out.println("Dupe");
         }
 
