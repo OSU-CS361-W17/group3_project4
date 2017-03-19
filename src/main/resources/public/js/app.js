@@ -15,19 +15,25 @@ $( document ).ready(function() {
             function closePlaceShipsOverlay() {
                 //Checks if all the player ships have been placed before closing the overlay
                 if (checkAllShipsPlaced() == true) {
-                var isHardDifficulty = document.getElementById("hardDifficulty").checked;
-                //Checks the selected difficulty, if hard is chosen on the slider then the difficulty is set to hard in the model
-                //The default difficulty is Easy
-                if ( isHardDifficulty) {
-                    gameModel.hardAI = 1;
-                    //the following will call a function that will change the computer's ship placement to be random
-                    changeComputerShipPlacement();
-                }
-                document.getElementById("myNav").style.height = "0%";
+                    var confirmation = confirm("Are All Your Ships Where You Want Them To Be?")
+                    if (confirmation == true) {
+                        var isHardDifficulty = document.getElementById("hardDifficulty").checked;
+                        //Checks the selected difficulty, if hard is chosen on the slider then the difficulty is set to hard in the model
+                        //The default difficulty is Easy
+                        if ( isHardDifficulty) {
+                            gameModel.hardAI = 1;
+                            //the following will call a function that will change the computer's ship placement to be random
+                            changeComputerShipPlacement();
+                        }
+                    document.getElementById("myNav").style.height = "0%";
+                    }
+                    else {
+                        //Do nothing and keep the place ships screen open if the user denies the confirmation
+                    }
                 }
                 //If all ships havent been placed pop up with a notification
                 else {
-                    //still need to implement notification for failure
+                   alert("Please Place All Your Ships On Your Board")
                 }
             }
 
