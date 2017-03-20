@@ -227,8 +227,6 @@ public class BattleshipModel {
                 }
             }
         }
-
-        System.out.println("returning false");
         return false;
     }
     //couldn't get contains() working with ArrayList<Coordinate>(), so I built my own
