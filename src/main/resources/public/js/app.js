@@ -33,7 +33,7 @@ $( document ).ready(function() {
                 }
                 //If all ships havent been placed pop up with a notification
                 else {
-                   alert("Please Place All Your Ships On Your Board")
+                   alert("Please Place All Your Ships On Your Board");
                 }
             }
 

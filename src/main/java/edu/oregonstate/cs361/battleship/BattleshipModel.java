@@ -114,7 +114,7 @@ public class BattleshipModel {
             ezShot();
         }
     }
-    public void ezShot(){//still needs code to stop from shooting same tile twice. Consider using code in else statement in hardShot()
+    public void ezShot(){
         int max = 10;
         int min = 1;
         Coordinate coor = new Coordinate(0, 0);
@@ -128,43 +128,50 @@ public class BattleshipModel {
         playerShot(coor);
         return;
     }
-    //loops through all known hits and wraps them in shots such that all hits will be surrounded by hits or misses. Randomizes if all hits are wrapped.
+    //loops through all known hits and wraps them in shots such that all hits will be surrounded by hits or misses. Prioritizes lines of hits. Randomizes if all hits are wrapped.
     public void hardShot(){
         int max = 10;
         int min = 1;
         Coordinate fireOn = new Coordinate(0,0);
         Coordinate coor = new Coordinate(0,0);
         for(int ctr = 0; ctr<playerHits.size(); ctr++){
-            fireOn = hitTile(playerHits.get(ctr));
+            fireOn = hitTile(playerHits.get(ctr), false);//tells hitTile to only return good coordinate if it's on a line of hits
             if(fireOn.getAcross()!=0 && fireOn.getDown()!=0) {
-                break;
+                playerShot(fireOn);
+                return;
             }
         }
-        if(fireOn.getAcross()!=0 && fireOn.getDown()!=0){
-            playerShot(fireOn);
-            return;
-        } else {//EZSHOT prototype (do/while prevents double shots)
-            do {
-                Random random = new Random();
-                int randRow = random.nextInt(max - min + 1) + min;
-                int randCol = random.nextInt(max - min + 1) + min;
-                coor = new Coordinate(randRow, randCol);
-            }while(!goodShot(coor));
+        for(int ctr = 0; ctr<playerHits.size(); ctr++){
+            fireOn = hitTile(playerHits.get(ctr), true);//tells hitTile to return a coordinate next to a hit even if it's not on a line of hits (because if there are any hitlinesthis block isn't reached)
+            if(fireOn.getAcross()!=0 && fireOn.getDown()!=0) {
+                playerShot(fireOn);
+                return;
+            }
+        }
+
+        do {//Gives up on being smart and starts guessing
+            Random random = new Random();
+            int randRow = random.nextInt(max - min + 1) + min;
+            int randCol = random.nextInt(max - min + 1) + min;
+            coor = new Coordinate(randRow, randCol);
+        }while(!goodShot(coor));//generates coordinates until it gets one it hasnt shot at yet
             playerShot(coor);
             return;
-        }
     }
-    //hardShot() helper function returns a good coordinate to fire upon or {0,0} if toCheck is wrapped in shots (hits/misses)
-    public Coordinate hitTile(Coordinate toCheck){
+    //When desperate, hitTile returns a coordinate adjacent to a hit, or {0,0} if none available. When not desperate, returns a coordinate on a line of hits, or {0,0} if no hitlines are available.
+    public Coordinate hitTile(Coordinate toCheck, boolean isDesperate){
         Coordinate toRet = new Coordinate(0,0);
         Coordinate tmpCoord = new Coordinate(toCheck);
         for(int ctr1 = -1; ctr1<2; ctr1++){
             for(int ctr2 = -1; ctr2<2; ctr2++){
-                if((ctr1==0 || ctr2==0)){
-                    //avoids diagonal displacement/checking original tile
+                if((ctr1==0 || ctr2==0)){//avoids diagonal displacement
                     tmpCoord.setAcross(toCheck.getAcross()+ctr1);
                     tmpCoord.setDown(toCheck.getDown()+ctr2);
-                    if(goodShot(tmpCoord)){//checking if square has already been fired upon
+                    if(goodShot(tmpCoord)&&hitLine(tmpCoord)){//checking if square has already been fired upon and if it coincides with a line of hits
+                        toRet.setAcross(tmpCoord.getAcross());
+                        toRet.setDown(tmpCoord.getDown());
+                        return toRet;
+                    } else if(goodShot(tmpCoord) && isDesperate){//when desperate, shoots at any goodShot() regardless of whether it's a hitline
                         toRet.setAcross(tmpCoord.getAcross());
                         toRet.setDown(tmpCoord.getDown());
                         return toRet;
@@ -173,7 +180,7 @@ public class BattleshipModel {
             }
 
         }
-        return toRet;//returning {0,0} since flow wasn't interrupted by good square being found
+        return toRet;//When desperate, returning {0,0} indicating toCheck is wrapped. When not desperate, returning {0,0} indicating toCheck is not on a hitline
     }
     //loops through playerHits and playerMisses checking if toCheck has been fired upon yet
     public boolean goodShot(Coordinate toCheck){
@@ -190,6 +197,47 @@ public class BattleshipModel {
                 return false;
         }
         return true;
+    }
+    //returns true if toCheck would continue a line of 2 or more hits
+    public boolean hitLine(Coordinate toCheck){
+        Coordinate loopCoor;
+        Coordinate tmpCoor;
+        for(int ctr = 0; ctr<playerHits.size(); ctr++){
+            loopCoor = playerHits.get(ctr);
+
+            if(loopCoor.getAcross()==toCheck.getAcross() && loopCoor.getDown()==toCheck.getDown()-1) {
+                tmpCoor = new Coordinate(toCheck.getAcross(), toCheck.getDown()-2);
+                if(isHit(tmpCoor)) {
+                    return true;
+                }
+            }else if(loopCoor.getAcross()==toCheck.getAcross() && loopCoor.getDown()==toCheck.getDown()+1){
+                tmpCoor = new Coordinate(toCheck.getAcross(), toCheck.getDown()+2);
+                if(isHit(tmpCoor)) {
+                    return true;
+                }
+            }else if(loopCoor.getDown()==toCheck.getDown() && loopCoor.getAcross()==toCheck.getAcross()-1){
+                tmpCoor = new Coordinate(toCheck.getAcross()-2, toCheck.getDown());
+                if(isHit(tmpCoor)) {
+                    return true;
+                }
+            }else if(loopCoor.getDown()==toCheck.getDown() && loopCoor.getAcross()==toCheck.getAcross()+1){
+                tmpCoor = new Coordinate(toCheck.getAcross()+2, toCheck.getDown());
+                if(isHit(tmpCoor)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    //couldn't get contains() working with ArrayList<Coordinate>(), so I built my own
+    public boolean isHit(Coordinate coor){
+        Coordinate tmpCoor;
+        for(int ctr = 0; ctr<playerHits.size(); ctr++){
+            tmpCoor = playerHits.get(ctr);
+            if(tmpCoor.getAcross()==coor.getAcross() && tmpCoor.getDown()==coor.getDown())
+                return true;
+        }
+        return false;
     }
 
     void playerShot(Coordinate coor) {

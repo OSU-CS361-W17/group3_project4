@@ -15,6 +15,7 @@ public class Coordinate {
         this.Across = cpCoord.Across;
         this.Down = cpCoord.Down;
     }
+
     public int getDown() {
         return Down;
     }
